@@ -30,16 +30,17 @@ fun  listExample() {
 /**
  * Set is an unordered collection of unique items that doesn't support duplicates.
  */
+class SetExample {
+    val openIssues = mutableSetOf("Ticket 01", "Ticket 02", "Ticket 03")
+    val readOnlyOpenIssues: Set<String> = openIssues
+    var constantIssue = setOf("a", "b", "c", "d")
+    fun addIssue(issue: String): Boolean {
+        return openIssues.add(issue)
+    }
 
-val openIssues = mutableSetOf("Ticket 01", "Ticket 02", "Ticket 03")
-val readOnlyOpenIssues: Set<String> = openIssues
-
-fun addIssue(issue: String): Boolean {
-    return openIssues.add(issue)
-}
-
-fun getStatusLog(isAdded: Boolean): String {
-    return if (isAdded) "added correctly." else "marked as duplicated and rejected."
+    fun getStatusLog(isAdded: Boolean): String {
+        return if (isAdded) "Added Correctly." else "marked as duplicated and rejected."
+    }
 }
 
 /**
@@ -62,7 +63,8 @@ fun main() {
     listExample()
 
     // Example of set
-    println("Ticket ${getStatusLog(addIssue("Ticket 04"))}")
+    val setExample = SetExample()
+    println("Ticket ${setExample.getStatusLog(setExample.addIssue("Ticket 04"))}")
     println("********Maps**************")
     mapsExample()
 
@@ -76,7 +78,7 @@ fun main() {
     println()
     println("*********** Use of map and forEach ************")
     val result = numbers.map { value ->
-        if (value > 0) "$value is positive" else "$value is negative"
+        if (value >= 0) "$value is positive" else "$value is negative"
     }
 
     result.forEach { item ->
@@ -86,7 +88,7 @@ fun main() {
     println()
 
     // Function any returns true if there's at least one element matching the criteria
-    println("Any number GT 5" + numbers.any { it > 6 })
+    println("Any number GT 5: " + numbers.any { it > 6 })
 
     // function "all" returns true if all the elements in the list match the criteria
     println("All numbers are less than 5 ${numbers.all { it < 5 }}" )
